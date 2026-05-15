@@ -166,7 +166,7 @@ export async function callSiliconChatCompletions(
 }
 
 export function buildSiliconConfigFromEnv(env: Record<string, string | undefined>): SiliconConfig {
-  const apiKey = firstDefined(env.SILICON_API_KEY, env.KEY);
+  const apiKey = firstDefined(env.SILICON_API_KEY);
   const model = firstDefined(env.SILICON_MODEL) ?? DEFAULT_SILICON_MODEL;
   const baseUrl = firstDefined(env.SILICON_BASE_URL) ?? DEFAULT_SILICON_BASE_URL;
 

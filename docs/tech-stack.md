@@ -71,5 +71,5 @@
 - `SILICON_API_KEY`
 - `SILICON_MODEL` defaults to `deepseek-ai/DeepSeek-V4-Flash`
 - `SILICON_BASE_URL` defaults to `https://api.siliconflow.cn/v1`
-- `KEY` is accepted as a local fallback for the existing environment key slot
+
 - Google verification file lives in `public/google7cfc68ab913bcd14.html`

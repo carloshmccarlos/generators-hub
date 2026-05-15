@@ -10,6 +10,7 @@ import type { CommentGoalId, CommentGroupKey, GeneratedComments, LanguageCode, T
 const STORAGE_KEY = "generator-hub:tiktok-comment:draft";
 const REQUEST_TIMEOUT_MS = 35000;
 const COOLDOWN_MS = 30000;
+const MAX_RETRIES = 5;
 
 export interface CommentDraft {
   caption: string;
@@ -139,50 +140,64 @@ export function useCommentGenerator() {
     setError(null);
     setResult(null);
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    let lastError = "";
 
-    try {
-      const response = await fetch("/api/tools/tiktok-comment/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          caption,
-          keywords: parseKeywordsInput(draft.keywords),
-          language: draft.language,
-          tone: draft.tone,
-          goals: draft.goals,
-        }),
-        signal: controller.signal,
-      });
-      clearTimeout(timeout);
-
-      const data = (await response.json()) as GeneratedComments | { error: string };
-
-      if (!response.ok) {
-        const message = "error" in data ? data.error : "Something went wrong, try again.";
-        throw new Error(message);
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      if (attempt > 1) {
+        await new Promise((r) => setTimeout(r, 1000 * (attempt - 1)));
       }
 
-      setResult(data as GeneratedComments);
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-      setTimeout(() => {
-        if (resultsRef.current && window.innerWidth < 1024) {
-          resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      try {
+        const response = await fetch("/api/tools/tiktok-comment/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            caption,
+            keywords: parseKeywordsInput(draft.keywords),
+            language: draft.language,
+            tone: draft.tone,
+            goals: draft.goals,
+          }),
+          signal: controller.signal,
+        });
+        clearTimeout(timeout);
+
+        const data = (await response.json()) as GeneratedComments | { error: string };
+
+        if (!response.ok) {
+          const message = "error" in data ? data.error : "Something went wrong, try again.";
+          throw new Error(message);
         }
-      }, 100);
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") {
-        setError("Generation timed out. Try again.");
-      } else if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Something went wrong, try again.");
+
+        setResult(data as GeneratedComments);
+        startCooldown();
+
+        setTimeout(() => {
+          if (resultsRef.current && window.innerWidth < 1024) {
+            resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+
+        setLoading(false);
+        return;
+      } catch (err) {
+        clearTimeout(timeout);
+
+        if (err instanceof DOMException && err.name === "AbortError") {
+          lastError = "Generation timed out. Try again.";
+        } else if (err instanceof Error) {
+          lastError = err.message;
+        } else {
+          lastError = "Something went wrong, try again.";
+        }
       }
-    } finally {
-      setLoading(false);
-      startCooldown();
     }
+
+    setError(lastError);
+    setLoading(false);
   }, [draft, startCooldown]);
 
   const copyComment = useCallback(
