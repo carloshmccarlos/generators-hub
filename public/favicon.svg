@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Generator Hub">
+  <rect width="64" height="64" rx="18" fill="#1C1C1C"/>
+  <path
+    d="M19 17.5C19 14.4624 21.4624 12 24.5 12H41.5C44.5376 12 47 14.4624 47 17.5V31.5C47 34.5376 44.5376 37 41.5 37H30.5L22 44.5V37H24.5C21.4624 37 19 34.5376 19 31.5V17.5Z"
+    fill="#FAF9F5"
+  />
+  <circle cx="27" cy="25" r="2.25" fill="#1C1C1C"/>
+  <circle cx="32" cy="25" r="2.25" fill="#1C1C1C"/>
+  <circle cx="37" cy="25" r="2.25" fill="#1C1C1C"/>
+</svg>

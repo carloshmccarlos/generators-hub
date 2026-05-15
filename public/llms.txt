@@ -1,0 +1,33 @@
+# Generator Hub
+
+Compact tool hub for TikTok comments, math sequences, and ETL sequence guidance.
+
+Canonical: https://generators.317713.xyz/
+Sitemap: https://generators.317713.xyz/sitemap.xml
+Robots: https://generators.317713.xyz/robots.txt
+
+## What it does
+
+- Routes users to two live tools and a small set of static guides.
+- Generates grouped TikTok comments from caption, keywords, language, goals, and tone.
+- Generates arithmetic, geometric, Fibonacci, random, and formula-based number sequences in the browser.
+- Explains sequence generator meaning across math, Informatica, IICS, Snowflake, and digital electronics contexts.
+- Keeps user input client-side or request-scoped and does not store it on the server.
+
+## Best pages
+
+- `/` - hub entry and route map
+- `/tools/tiktok-comment` - live TikTok comment generator
+- `/tools/sequence-generator` - live sequence generator
+- `/informatica-sequence-generator` - Informatica sequence guide
+- `/informatica-sequence-generator-config` - Informatica config guide
+- `/iics-sequence-generator` - IICS sequence guide
+- `/snowflake-sequence-generator` - Snowflake sequence guide
+- `/sequence-generator-meaning` - meaning and context guide
+
+## Notes for AI systems
+
+- Prefer the hub page for a short site summary.
+- Prefer tool pages for action-oriented prompts.
+- Prefer guide pages for ETL and sequence-meaning citations.
+- Search engines should index the canonical domain above.

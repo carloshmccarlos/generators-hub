@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..72,wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Bricolage Grotesque", "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Editorial Cream Palette */
+  --color-background: oklch(98% 0.01 85);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-elevated: oklch(96% 0.015 85);
+
+  --color-foreground: oklch(20% 0.04 85);
+  --color-muted: oklch(48% 0.025 85);
+  --color-border: oklch(86% 0.01 85);
+
+  /* Brand - warm terracotta */
+  --color-brand: oklch(42% 0.14 25);
+  --color-brand-hover: oklch(35% 0.16 25);
+
+  /* Secondary accents */
+  --color-accent-teal: oklch(55% 0.12 175);
+  --color-accent-amber: oklch(60% 0.15 75);
+
+  /* Semantic */
+  --color-success: oklch(50% 0.12 150);
+  --color-info: oklch(55% 0.12 230);
+  --color-rose: oklch(50% 0.15 25);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background: var(--color-background);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+
+@layer utilities {
+  /* Subtle micro grid */
+  .bg-dot-grid {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Frosted light glass */
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Sleek shadow for brand CTA */
+  .glow-brand {
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.2);
+  }
+
+  .glow-brand-sm {
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Clean mono label */
+  .font-mono-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Vibrant card glow */
+  .card-glow-coral {
+    box-shadow: 0 0 0 1px var(--color-border), 0 8px 32px -8px var(--color-brand);
+  }
+  .card-glow-coral:hover {
+    box-shadow: 0 0 0 1px var(--color-brand), 0 12px 40px -10px var(--color-brand);
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Gentle scale pulse for live indicators */
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.8; }
+  }
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  /* Slow rotate for decorative elements */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  /* Subtle shimmer for cards */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Entrance slide up */
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Entrance fade in */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Tool-specific accent backgrounds */
+  .bg-accent-coral {
+    background: oklch(55% 0.18 25);
+  }
+  .bg-accent-teal {
+    background: oklch(55% 0.12 175);
+  }
+
+  /* Noise texture overlay */
+  .bg-noise {
+    position: relative;
+  }
+  .bg-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+}

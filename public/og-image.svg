@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Generator Hub</title>
+  <desc id="desc">SEO and GEO preview card for the Generator Hub web app.</desc>
+  <defs>
+    <linearGradient id="card" x1="710" y1="126" x2="1076" y2="504" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F1E8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#1C1C1C" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#FAF9F5"/>
+  <circle cx="1040" cy="86" r="120" fill="#EDE8DD" opacity="0.55"/>
+  <circle cx="994" cy="520" r="160" fill="#E5E1D6" opacity="0.35"/>
+  <circle cx="154" cy="504" r="100" fill="#EDE8DD" opacity="0.3"/>
+
+  <rect x="84" y="84" width="250" height="44" rx="22" fill="#1C1C1C"/>
+  <text
+    x="209"
+    y="112"
+    fill="#FAF9F5"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="16"
+    font-weight="700"
+    letter-spacing="0.16em"
+    text-anchor="middle"
+  >
+    AI COMMENT GENERATOR
+  </text>
+
+  <text
+    x="84"
+    y="238"
+    fill="#1C1C1C"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="76"
+    font-weight="700"
+    letter-spacing="-0.04em"
+  >
+    <tspan x="84" dy="0">Generator Hub</tspan>
+    <tspan x="84" dy="84">TikTok Comment</tspan>
+  </text>
+
+  <text
+    x="84"
+    y="382"
+    fill="#6B6B6B"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="28"
+    font-weight="500"
+  >
+    Live generators, starting with TikTok Comment.
+  </text>
+
+  <g filter="url(#shadow)">
+    <rect x="710" y="126" width="366" height="378" rx="32" fill="url(#card)" stroke="#E5E4DE"/>
+
+    <rect x="744" y="162" width="186" height="34" rx="17" fill="#1C1C1C"/>
+    <text
+      x="837"
+      y="184"
+      fill="#FAF9F5"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="13"
+      font-weight="700"
+      letter-spacing="0.16em"
+      text-anchor="middle"
+    >
+      LIVE TOOL
+    </text>
+
+    <rect x="744" y="218" width="298" height="92" rx="22" fill="#FFFFFF" stroke="#E5E4DE"/>
+    <rect x="744" y="328" width="298" height="92" rx="22" fill="#FFFFFF" stroke="#E5E4DE"/>
+    <rect x="744" y="438" width="298" height="44" rx="22" fill="#FFFFFF" stroke="#E5E4DE"/>
+
+    <text
+      x="772"
+      y="266"
+      fill="#1C1C1C"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="28"
+      font-weight="700"
+    >
+      Generator hub home.
+    </text>
+    <text
+      x="772"
+      y="376"
+      fill="#1C1C1C"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="28"
+      font-weight="700"
+    >
+      TikTok comment tool.
+    </text>
+    <text
+      x="772"
+      y="466"
+      fill="#1C1C1C"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="24"
+      font-weight="700"
+    >
+      More generators soon.
+    </text>
+  </g>
+</svg>

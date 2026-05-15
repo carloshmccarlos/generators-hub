@@ -1,0 +1,7 @@
+# Generator Hub
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://generators.317713.xyz/sitemap.xml
+# AI discovery: https://generators.317713.xyz/llms.txt

@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "generator-hub",
+  "compatibility_date": "2026-04-17",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "keep_vars": true,
+  "main": "./worker/index.ts",
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "routes": [
+    {
+      "pattern": "generators.317713.xyz",
+      "custom_domain": true
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  }
+}

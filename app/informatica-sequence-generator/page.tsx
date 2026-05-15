@@ -1,0 +1,17 @@
+import { JsonLd } from "@/components/seo/json-ld";
+import { GuidePage } from "@/components/content/guide-page";
+import { buildGuideStructuredData } from "@/lib/seo";
+import { buildGuideMetadata, getSequenceGuide } from "@/lib/content/sequence-guides";
+
+const guide = getSequenceGuide("informatica-sequence-generator");
+
+export const metadata = buildGuideMetadata(guide);
+
+export default function Page() {
+  return (
+    <>
+      <JsonLd data={buildGuideStructuredData(guide)} />
+      <GuidePage guide={guide} />
+    </>
+  );
+}
