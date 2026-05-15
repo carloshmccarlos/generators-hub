@@ -9,6 +9,7 @@ import type { CommentGoalId, CommentGroupKey, GeneratedComments, LanguageCode, T
 
 const STORAGE_KEY = "generator-hub:tiktok-comment:draft";
 const REQUEST_TIMEOUT_MS = 35000;
+const COOLDOWN_MS = 30000;
 
 export interface CommentDraft {
   caption: string;
@@ -59,11 +60,22 @@ export function useCommentGenerator() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<GeneratedComments | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [cooldownRemaining, setCooldownRemaining] = useState(0);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const inCooldownRef = useRef(false);
+  const cooldownIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     saveDraft(draft);
   }, [draft]);
+
+  useEffect(() => {
+    return () => {
+      if (cooldownIntervalRef.current) {
+        clearInterval(cooldownIntervalRef.current);
+      }
+    };
+  }, []);
 
   const updateDraft = useCallback((patch: Partial<CommentDraft>) => {
     setDraft((prev) => ({ ...prev, ...patch }));
@@ -87,7 +99,32 @@ export function useCommentGenerator() {
     setTimeout(() => setToast(null), 2000);
   }, []);
 
+  const startCooldown = useCallback(() => {
+    if (cooldownIntervalRef.current) {
+      clearInterval(cooldownIntervalRef.current);
+    }
+
+    inCooldownRef.current = true;
+    setCooldownRemaining(COOLDOWN_MS / 1000);
+
+    cooldownIntervalRef.current = setInterval(() => {
+      setCooldownRemaining((prev) => {
+        if (prev <= 1) {
+          if (cooldownIntervalRef.current) {
+            clearInterval(cooldownIntervalRef.current);
+            cooldownIntervalRef.current = null;
+          }
+          inCooldownRef.current = false;
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }, []);
+
   const generate = useCallback(async () => {
+    if (inCooldownRef.current) return;
+
     const caption = draft.caption.trim();
     if (!caption) {
       setError("Please describe the video first");
@@ -144,8 +181,9 @@ export function useCommentGenerator() {
       }
     } finally {
       setLoading(false);
+      startCooldown();
     }
-  }, [draft]);
+  }, [draft, startCooldown]);
 
   const copyComment = useCallback(
     async (comment: string) => {
@@ -204,6 +242,7 @@ export function useCommentGenerator() {
       error,
       result,
       toast,
+      cooldownRemaining,
       resultsRef,
       languageLabel: LANGUAGE_OPTIONS.find((o) => o.id === draft.language)?.label ?? draft.language,
       toneLabel: TONE_OPTIONS.find((o) => o.id === draft.tone)?.label ?? draft.tone,

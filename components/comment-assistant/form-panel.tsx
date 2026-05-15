@@ -20,7 +20,7 @@ interface FormPanelProps {
 }
 
 export function FormPanel({ generatorState, actions }: FormPanelProps) {
-  const { draft, loading, error } = generatorState;
+  const { draft, loading, error, cooldownRemaining } = generatorState;
   const captionLen = draft.caption.length;
 
   return (
@@ -52,7 +52,7 @@ export function FormPanel({ generatorState, actions }: FormPanelProps) {
               onChange={(e) => actions.updateDraft({ caption: e.target.value })}
               className="w-full resize-none rounded-xl border border-[#e5e4de] bg-[#faf9f5] px-4 py-3.5 text-sm leading-relaxed text-[#1c1c1c] outline-none transition-all placeholder:text-[#b0aea7] focus:border-black/30 focus:bg-white focus:ring-4 focus:ring-black/[0.04]"
               onKeyDown={(e) => {
-                if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+                if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && !loading && cooldownRemaining <= 0) {
                   e.preventDefault();
                   void actions.generate();
                 }
@@ -161,7 +161,7 @@ export function FormPanel({ generatorState, actions }: FormPanelProps) {
           <button
             type="button"
             onClick={() => void actions.generate()}
-            disabled={loading}
+            disabled={loading || cooldownRemaining > 0}
             className="group relative mt-2 flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-black px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 active:scale-[0.99] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-lg"
           >
             <motion.span
@@ -170,7 +170,7 @@ export function FormPanel({ generatorState, actions }: FormPanelProps) {
             >
               <Sparkles className="h-4 w-4" />
             </motion.span>
-            {loading ? "Generating..." : "Generate Comments"}
+            {loading ? "Generating..." : cooldownRemaining > 0 ? `Wait ${cooldownRemaining}s` : "Generate Comments"}
           </button>
         </div>
       </div>

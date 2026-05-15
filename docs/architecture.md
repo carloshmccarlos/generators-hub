@@ -59,7 +59,7 @@ Cloudflare deployment still uses `@cloudflare/vite-plugin` plus the generated `w
 ## Server Responsibilities
 - Normalize the request body.
 - Build prompts from constants and examples.
-- Call SiliconFlow with a 30s timeout.
+- Call SiliconFlow with a 60s timeout.
 - Disable thinking so the model emits the final JSON payload instead of mixing in reasoning text.
 - Default to `deepseek-ai/DeepSeek-V4-Flash` when no model is supplied.
 - Validate the raw response shape.
@@ -78,6 +78,7 @@ Cloudflare deployment still uses `@cloudflare/vite-plugin` plus the generated `w
 - Scroll to results after a successful generation on mobile.
 - Keep paired select controls visually even by reusing shared field styling.
 - Keep the client timeout at 35s so the server can return a controlled 504 before the browser aborts the request.
+- Enforce a 30s cooldown between generations so the API is not hammered on repeated attempts.
 - Keep prompts compact to reduce latency and make timeout failures less likely.
 - Keep metadata and icon work in the layout and `public/` assets rather than adding new UI components.
 

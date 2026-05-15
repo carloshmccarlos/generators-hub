@@ -43,7 +43,8 @@
 - Cloudflare Workers-compatible deployment
 - Route handlers served from the app router
 - `vinext dev` uses the printed local URL; do not assume port `3000` if another process is already bound there
-- Generation waits up to 30s on the server and 35s on the client before surfacing a timeout
+- Generation waits up to 60s on the server and 35s on the client before surfacing a timeout
+- A 30s cooldown is enforced between TikTok Comment generations to prevent API hammering
 
 ## AI
 - SiliconFlow API via server-side fetch

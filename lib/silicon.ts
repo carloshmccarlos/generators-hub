@@ -1,6 +1,6 @@
 import { AppError } from "@/lib/errors";
 
-const SILICON_TIMEOUT_MS = 30000;
+const SILICON_TIMEOUT_MS = 60000;
 const DEFAULT_SILICON_BASE_URL = "https://api.siliconflow.cn/v1";
 const DEFAULT_SILICON_MODEL = "deepseek-ai/DeepSeek-V4-Flash";
 
