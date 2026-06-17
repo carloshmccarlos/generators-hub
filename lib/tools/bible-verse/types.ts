@@ -1,6 +1,6 @@
 export type Testament = "old" | "new";
 
-export type BibleVersion = "KJV" | "WEB" | "BBE";
+export type BibleVersion = "KJV" | "WEB" | "BBE" | "NIV" | "ESV" | "ASV";
 
 export type VerseCategory =
   | "Comfort"

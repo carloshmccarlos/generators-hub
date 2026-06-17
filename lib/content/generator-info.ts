@@ -85,13 +85,14 @@ export const generatorAbouts: Record<string, GeneratorAbout> = {
     intro:
       "The Bible Verse Generator is a free tool for daily spiritual reflection, offering verses based on your mood across multiple translations.",
     body: [
-      "Select a spiritual mood—such as Anxious, Grateful, Seeking, or Confused—and receive a carefully curated Bible verse to guide your reflection. The tool supports multiple translations including the King James Version (KJV), World English Bible (WEB), and Bible in Basic English (BBE).",
+      "Select a spiritual mood—such as Anxious, Grateful, Seeking, or Confused—and receive a carefully curated Bible verse to guide your reflection. You can also narrow your focus by selecting the Old Testament or New Testament. The tool supports multiple translations including the King James Version (KJV), American Standard Version (ASV), and World English Bible (WEB).",
       "Designed for a distraction-free experience, the generator features both a bright minimal mode and a dark meditative mode with ambient glowing effects, helping you focus entirely on the Word.",
       "All verses are generated instantly in your browser. There is no account required, and your selections remain private to your device."
     ],
     features: [
       "Curated verses categorized by 6 spiritual moods",
-      "3 supported Bible translations (KJV, WEB, BBE)",
+      "6 supported Bible translations (KJV, ASV, WEB, BBE, NIV*, ESV*)",
+      "Filter verses by Old Testament, New Testament, or Whole Bible",
       "Distraction-free meditative dark mode",
       "One-click verse copying with reference formatting",
       "Instantly generated with no server-side tracking"
@@ -340,7 +341,7 @@ export const generatorFaqs: Record<string, GeneratorFaq> = {
     items: [
       {
         question: "Which Bible translations are supported?",
-        answer: "Currently, the tool supports the King James Version (KJV), World English Bible (WEB), and the Bible in Basic English (BBE). You can toggle between them using the selector at the top.",
+        answer: "The tool natively supports the King James Version (KJV), American Standard Version (ASV), World English Bible (WEB), and Bible in Basic English (BBE). Due to strict copyright restrictions on modern translations like the New International Version (NIV) and English Standard Version (ESV), those selections currently map to the public domain World English Bible (WEB) to ensure free, unrestricted access.",
       },
       {
         question: "How are the verses selected?",

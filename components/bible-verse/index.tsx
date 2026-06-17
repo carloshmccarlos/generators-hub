@@ -21,8 +21,11 @@ const MOODS: { id: SpiritualMood; label: string; icon: string }[] = [
 
 const VERSIONS: { id: BibleVersion; label: string }[] = [
   { id: "KJV", label: "King James Version" },
+  { id: "NIV", label: "New International Version" },
+  { id: "ESV", label: "English Standard Version" },
   { id: "WEB", label: "World English Bible" },
   { id: "BBE", label: "Bible in Basic English" },
+  { id: "ASV", label: "American Standard Version" },
 ];
 
 export function BibleVerseGenerator() {
@@ -223,6 +226,39 @@ export function BibleVerseGenerator() {
         {/* Generator Section */}
         <div className="flex flex-col items-center justify-center space-y-16">
           
+          {/* Testament Selector */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
+            className="flex flex-col items-center mb-2"
+          >
+            <div className={`flex items-center gap-1 p-1 rounded-full border backdrop-blur-2xl transition-all ${
+              isMeditative ? "bg-white/5 border-white/5" : "bg-white/60 border-black/5"
+            }`}>
+              {[
+                { id: "all", label: "Whole Bible" },
+                { id: "old", label: "Old Testament" },
+                { id: "new", label: "New Testament" }
+              ].map((t) => {
+                const isActive = filter.testament === t.id;
+                return (
+                  <button
+                    key={t.id}
+                    onClick={() => actions.updateFilter({ testament: t.id as any })}
+                    className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                      isActive
+                        ? isMeditative ? "bg-white/10 text-white shadow-sm" : "bg-white text-black shadow-sm"
+                        : isMeditative ? "text-white/40 hover:text-white/70" : "text-black/40 hover:text-black/70"
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+
           {/* Mood Selector (Premium Glass Pills) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

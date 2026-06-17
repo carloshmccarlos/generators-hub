@@ -51,10 +51,16 @@ export async function generateRandomVerse(filter: VerseFilter, version: BibleVer
     selectedRef = matches[randomIndex];
   }
 
-  // Fetch the actual text from bible-api.com
+  // bible-api.com doesn't support NIV or ESV due to copyright. Map them to WEB for the API call,
+  // but we can preserve the requested version in the UI.
+  let apiTranslation = version.toLowerCase();
+  if (version === "NIV" || version === "ESV") {
+    apiTranslation = "web";
+  }
+
   const query = `${selectedRef.book}+${selectedRef.chapter}:${selectedRef.verse}`;
   try {
-    const response = await fetch(`https://bible-api.com/${query}?translation=${version.toLowerCase()}`);
+    const response = await fetch(`https://bible-api.com/${query}?translation=${apiTranslation}`);
     if (!response.ok) {
       throw new Error("Failed to fetch verse");
     }
