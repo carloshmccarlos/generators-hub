@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Sigma } from "lucide-react";
 
@@ -10,7 +11,11 @@ import { ModeTabs } from "./mode-tabs";
 import { ResultsPanel } from "./results-panel";
 import { useSequenceGenerator } from "./use-sequence-generator";
 
-export function SequenceGenerator() {
+interface SequenceGeneratorProps {
+  children?: ReactNode;
+}
+
+export function SequenceGenerator({ children }: SequenceGeneratorProps) {
   const { state, actions } = useSequenceGenerator();
 
   return (
@@ -41,6 +46,8 @@ export function SequenceGenerator() {
         </div>
 
         <ResultsPanel generatorState={state} actions={actions} />
+
+        {children}
       </main>
 
       <AnimatePresence>

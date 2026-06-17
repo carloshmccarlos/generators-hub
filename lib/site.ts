@@ -1,10 +1,10 @@
 export const siteName = "Generator Hub";
 export const siteUrl = "https://generators.317713.xyz";
 
-export const siteTitle = "Generator Hub | TikTok Comment & Sequence Tools";
+export const siteTitle = "Generator Hub | TikTok Comment, Sequence & Bible Verse Tools";
 
 export const siteDescription =
-  "Compact generators for TikTok comments, math sequences, and ETL sequence guides. Built for fast discovery, clean indexing, and AI citations.";
+  "Compact generators for TikTok comments, math sequences, random Bible verses, and ETL sequence guides. Built for fast discovery, clean indexing, and AI citations.";
 
 export const siteKeywords = [
   "generator hub",
@@ -12,6 +12,9 @@ export const siteKeywords = [
   "TikTok comment generator",
   "sequence generator",
   "math sequence generator",
+  "bible verse generator",
+  "random bible verse",
+  "daily bible verse",
   "Informatica sequence generator",
   "IICS sequence generator",
   "Snowflake sequence",

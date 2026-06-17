@@ -7,8 +7,9 @@ Search and AI discovery are part of the product surface. The site should stay co
 
 ## Product Shape
 - `/` is the hub home and shows only tool entry points plus a short status area.
-- `/tools/tiktok-comment` is the live tool page for TikTok comment generation.
+- `/tools/tiktok-comment` is the live tool page for TikTok comment generation, incorporating both the interactive generator and inline About & FAQ sections at the bottom.
 - `/tools/sequence-generator` is the live tool page for math sequence generation.
+- `/tools/bible-verse` is the live tool page for generating random bible verses.
 - Static guide routes support discovery for Informatica, IICS, Snowflake, and concept intent:
   - `/informatica-sequence-generator`
   - `/informatica-sequence-generator-config`
@@ -18,8 +19,12 @@ Search and AI discovery are part of the product surface. The site should stay co
 - Tool pages are isolated by route and by localStorage namespace.
 
 ## Design Direction
-- Keep the hub page minimal, modern, fashion-aware, normal, and scan-friendly.
-- Refactor the hub away from decorative hero patterns into a polished catalog-style tool directory that makes the two live tools immediately visible without adding new frontend features.
+- Hub home is a typographic-indexed tool directory: tools displayed as large numbered entries (01, 02, 03) rather than a bento card grid.
+- No About or FAQ sections on the home page; maintain strict minimalism and focus only on the tools.
+- TikTok Comment Generator page uses an optimized two-column side-by-side layout on desktop (Form input on the left, Results panel on the right) with an aligned two-column side-by-side inline About (left, 5 columns) and FAQ (right, 7 columns) section at the bottom.
+- Font pairing: **Libre Baskerville** (display/headings, crisp classical serif) + **Geist** (body/UI, geometric sans). Neither are generic AI defaults.
+- Color accent: copper-amber `oklch(58% 0.14 65)` for live status indicators and TikTok Comment active UI selections, alongside deep ink foreground on warm cream background.
+- Remove nested card-in-card patterns. Flat, typographically-driven hierarchy replaces doubled borders.
 - Keep page copy short.
 - Use the existing light visual system with restrained borders, predictable spacing, editorial proportion, and minimal motion.
 - Keep tool UIs compact, fast, and touch-friendly.

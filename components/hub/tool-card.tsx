@@ -1,56 +1,105 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Hash, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import type { ToolSummary } from "@/lib/tools/registry";
 import { cardReveal } from "./animations";
 
-const toolMeta: Record<
-  string,
-  { icon: React.ReactNode }
-> = {
-  "tiktok-comment": {
-    icon: <MessageCircle className="h-5 w-5" />,
-  },
-  "sequence-generator": {
-    icon: <Hash className="h-5 w-5" />,
-  },
+const toolAccents: Record<string, { hue: string; label: string }> = {
+  "tiktok-comment": { hue: "oklch(58% 0.14 65)", label: "Social" },
+  "sequence-generator": { hue: "oklch(52% 0.12 220)", label: "Math" },
+  "bible-verse": { hue: "oklch(50% 0.10 150)", label: "Content" },
 };
 
 export function ToolCard({ tool, index }: { tool: ToolSummary; index: number }) {
-  const meta = toolMeta[tool.id] ?? { icon: <Hash className="h-5 w-5" /> };
+  const accent = toolAccents[tool.id] ?? { hue: "oklch(58% 0.14 65)", label: "Tool" };
+  const idx = String(index + 1).padStart(2, "0");
 
   return (
     <motion.a
       custom={index}
       variants={cardReveal}
       href={tool.href}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-[#e5e4de]/70 bg-white p-8 shadow-[0_2px_16px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(0,0,0,0.1)] hover:border-black/20"
+      className="group relative flex items-start gap-6 sm:gap-8 py-7 sm:py-8 border-b border-[var(--color-border)] cursor-pointer"
+      style={{ textDecoration: "none" }}
     >
-      <div className="absolute left-0 right-0 top-0 h-1 bg-black/10 transition-opacity duration-500 group-hover:opacity-100" />
+      {/* Index number */}
+      <div
+        className="shrink-0 pt-1 select-none"
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "11px",
+          letterSpacing: "0.08em",
+          color: "var(--color-muted)",
+          opacity: 0.5,
+          minWidth: "2rem",
+        }}
+      >
+        {idx}
+      </div>
 
-      <div className="mb-5 flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-black text-white transition-transform duration-500 group-hover:scale-110">
-          {meta.icon}
+      {/* Main content */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            {/* Category label */}
+            <div className="mb-2 flex items-center gap-2">
+              <span
+                className="live-dot"
+                style={{ background: accent.hue }}
+              />
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10px",
+                  letterSpacing: "0.1em",
+                  color: accent.hue,
+                  textTransform: "uppercase",
+                }}
+              >
+                {accent.label}
+              </span>
+            </div>
+
+            {/* Tool name */}
+            <h3
+              className="font-display leading-tight tracking-tight text-[var(--color-foreground)] transition-transform duration-500 ease-out group-hover:translate-x-2"
+              style={{
+                fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
+                fontWeight: 700,
+              }}
+            >
+              {tool.name}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="mt-2 text-[14px] leading-relaxed max-w-md"
+              style={{ color: "var(--color-muted)" }}
+            >
+              {tool.description}
+            </p>
+          </div>
+
+          {/* Arrow indicator */}
+          <div
+            className="shrink-0 mt-1 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-transparent transition-all duration-500 ease-out group-hover:bg-[var(--color-foreground)] group-hover:border-[var(--color-foreground)]"
+            style={{ width: "2.5rem", height: "2.5rem" }}
+          >
+            <ArrowUpRight
+              className="transition-all duration-500 ease-out group-hover:text-[var(--color-background)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              style={{ width: "1rem", height: "1rem", color: "var(--color-muted)" }}
+            />
+          </div>
         </div>
-        <span className="text-xs font-semibold uppercase tracking-wider text-[#b0aea7]">
-          Live
-        </span>
       </div>
 
-      <h3 className="font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-[#1c1c1c]">
-        {tool.name}
-      </h3>
-
-      <p className="mt-3 flex-1 text-[15px] leading-relaxed text-[#6b6b6b]">
-        {tool.description}
-      </p>
-
-      <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-[#6b6b6b] transition-all duration-300 group-hover:gap-3 group-hover:text-black">
-        <span>Open tool</span>
-        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-      </div>
+      {/* Hover fill line at bottom */}
+      <div
+        className="absolute bottom-0 left-0 h-px w-0 bg-[var(--color-foreground)] transition-all duration-500 ease-out group-hover:w-full"
+        aria-hidden
+      />
     </motion.a>
   );
 }

@@ -58,6 +58,16 @@ function getToolFeatures(tool: ToolSummary): string[] {
     ];
   }
 
+  if (tool.id === "bible-verse") {
+    return [
+      "Random Bible verse generator",
+      "Old and New Testament filtering",
+      "Curated topic/category filters",
+      "Bookmark and favorites lists",
+      "One-click copy to clipboard",
+    ];
+  }
+
   return [tool.name];
 }
 

@@ -25,6 +25,14 @@ export const toolRegistry = [
     href: "/tools/sequence-generator",
   },
   {
+    id: "bible-verse",
+    name: "Bible Verse",
+    description:
+      "Random Bible verse generator filtering by Old/New Testament and categories like Comfort, Faith, and Wisdom.",
+    status: "live",
+    href: "/tools/bible-verse",
+  },
+  {
     id: "more-generators",
     name: "More generators",
     description: "Additional generators are coming soon.",

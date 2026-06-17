@@ -17,8 +17,10 @@ export function LiveTools() {
       variants={sectionContainer}
       initial="hidden"
       animate="visible"
-      className="grid gap-5 sm:grid-cols-2"
+      className="w-full"
     >
+      {/* Top border of the index list */}
+      <div className="border-t border-[var(--color-border)]" />
       {tools.map((tool, i) => (
         <ToolCard key={tool.id} tool={tool} index={i} />
       ))}

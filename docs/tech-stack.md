@@ -11,7 +11,7 @@
 - The hub uses a light, catalog-like directory shell and concise cards
 - The hub home uses short copy, restrained static layout, editorial spacing, and registry-driven tool cards
 - Hub card presentation lives in a separate component file to preserve one React component per file
-- Tool pages keep the existing compact form and result layout
+- TikTok Comment Generator page uses an optimized two-column side-by-side layout on desktop, aligning both the generator panels and the inline About (5-span) & FAQ (7-span) sections to clean vertical columns, removing standalone routes. Active form options and focus rings use the copper-amber brand accent color.
 - Static guide pages use the same shell and short-form editorial layout
 - Shared field classes keep paired inputs and selectors aligned with equal visual spacing
 - Client and server generation timeouts are intentionally staggered so the UI waits slightly longer than the upstream API budget

@@ -95,59 +95,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteStructuredData) }}
         />
         {children}
-        <footer className="border-t border-[#e5e4de] bg-[#faf9f5]/80">
-          <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 lg:px-10">
-            <div className="grid gap-10 sm:grid-cols-4">
-              <div className="sm:col-span-1">
-                <div className="font-display font-semibold text-[#1c1c1c]">{siteName}</div>
-                <p className="mt-2 text-sm leading-relaxed text-[#6b6b6b]">
-                  Free generators for TikTok comments, math sequences, and ETL guidance. No accounts, no data storage.
-                </p>
-              </div>
-              {[
-                {
-                  label: "Site",
-                  links: [
-                    { href: "/", label: "Home" },
-                    { href: "/about", label: "About" },
-                    { href: "/faq", label: "FAQ" },
-                  ],
-                },
-                {
-                  label: "Tools",
-                  links: [
-                    { href: "/tools/tiktok-comment", label: "TikTok Comment" },
-                    { href: "/tools/sequence-generator", label: "Sequence Generator" },
-                  ],
-                },
-                {
-                  label: "Contact",
-                  links: [],
-                },
-              ].map((group) => (
-                <div key={group.label}>
-                  <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#6b6b6b]">{group.label}</div>
-                  {group.links.length > 0 && (
-                    <div className="flex flex-col items-start gap-1.5">
-                      {group.links.map((link) => (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          className="relative text-sm text-[#6b6b6b] transition-colors hover:text-[#1c1c1c] after:absolute after:-bottom-px after:left-0 after:h-px after:w-0 after:bg-[#1c1c1c] after:transition-all after:duration-300 hover:after:w-full"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                  {group.label === "Contact" && (
-                    <div className="space-y-1.5 text-sm text-[#6b6b6b]">
-                      <p>{siteAuthorEmail}</p>
-                      <p className="text-[#b0aea7]">{siteName} &copy; 2026</p>
-                    </div>
-                  )}
-                </div>
-              ))}
+        <footer className="border-t border-[var(--color-border)] bg-[var(--color-background)]/80 py-6 backdrop-blur-md">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-xs text-[var(--color-muted)]">
+              <span className="font-display font-semibold text-[var(--color-foreground)]">{siteName}</span>
+              <span className="hidden sm:inline opacity-30 text-[var(--color-muted)]">|</span>
+              <span>&copy; 2026. All rights reserved.</span>
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+              <a href="/" className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">Home</a>
+              <a href="/tools/tiktok-comment" className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">TikTok Comment</a>
+              <a href="/tools/sequence-generator" className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">Sequence</a>
+              <a href="/tools/bible-verse" className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">Bible Verse</a>
+              <a href="/sitemap.xml" className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">Sitemap</a>
+              <a href="/llms.txt" className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">llms.txt</a>
+              <a href={`mailto:${siteAuthorEmail}`} className="text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors duration-150">Support</a>
             </div>
           </div>
         </footer>

@@ -1,38 +1,51 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import { fadeInUp, staggerContainer } from "./animations";
+import { liveTools } from "@/lib/tools/registry";
 
 export function HubHeader() {
+  const toolCount = liveTools.length;
+
   return (
     <motion.header
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      className="flex flex-col items-start"
+      className="relative pt-16 pb-6 sm:pt-20"
     >
-      <motion.div variants={fadeInUp} className="mb-6">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#e5e4de]/70 bg-white/80 px-4 py-2 text-sm font-medium text-[#6b6b6b] shadow-sm backdrop-blur-xl">
-          Generator Hub
+      <motion.div variants={fadeInUp} className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[oklch(58%_0.14_65/0.2)] bg-[oklch(58%_0.14_65/0.05)] px-3 py-1.5 backdrop-blur-md">
+        <span className="live-dot" />
+        <span
+          style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.1em" }}
+          className="uppercase font-semibold text-[oklch(58%_0.14_65)]"
+        >
+          {toolCount} tools live
         </span>
       </motion.div>
 
       <motion.h1
         variants={fadeInUp}
-        className="font-display text-[clamp(2.8rem,7vw,5rem)] font-bold leading-[1.05] tracking-tight text-[#1c1c1c]"
+        className="font-display leading-[1.05] tracking-tight text-[var(--color-foreground)]"
+        style={{
+          fontSize: "clamp(3rem, 8vw, 5.5rem)",
+          fontWeight: 700,
+        }}
       >
-        Create faster.
+        Generator
         <br />
-        <span className="text-black/60">Think smarter.</span>
+        <span style={{ fontWeight: 400, fontStyle: "italic", color: "var(--color-muted)" }}>
+          Hub.
+        </span>
       </motion.h1>
 
       <motion.p
         variants={fadeInUp}
-        className="mt-7 max-w-xl text-[18px] leading-relaxed text-[#6b6b6b]"
+        className="mt-5 text-[15px] leading-relaxed max-w-sm"
+        style={{ color: "var(--color-muted)" }}
       >
-        AI-powered generators for content creators and developers.
-        Pick a tool and start creating in seconds.
+        AI-powered generators for creators and developers.
+        All tools run client-side — no accounts, no data storage.
       </motion.p>
     </motion.header>
   );

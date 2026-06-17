@@ -1,4 +1,4 @@
-﻿import type { GuideFaqItem, GuideLink } from "./sequence-guides";
+import type { GuideFaqItem, GuideLink } from "./sequence-guides";
 
 export interface GeneratorAbout {
   slug: string;
@@ -74,7 +74,30 @@ export const generatorAbouts: Record<string, GeneratorAbout> = {
     ],
     links: [
       { href: "/tools/sequence-generator", label: "Sequence Generator" },
-      { href: "/tools/tiktok-comment/faq", label: "TikTok Comment FAQ" },
+    ],
+  },
+  "bible-verse": {
+    slug: "tools/bible-verse/about",
+    eyebrow: "About",
+    title: "About Bible Verse Generator",
+    description:
+      "Learn about the Bible Verse Generator, its translations, spiritual moods, and how it helps with daily reflection.",
+    intro:
+      "The Bible Verse Generator is a free tool for daily spiritual reflection, offering verses based on your mood across multiple translations.",
+    body: [
+      "Select a spiritual mood—such as Anxious, Grateful, Seeking, or Confused—and receive a carefully curated Bible verse to guide your reflection. The tool supports multiple translations including the King James Version (KJV), World English Bible (WEB), and Bible in Basic English (BBE).",
+      "Designed for a distraction-free experience, the generator features both a bright minimal mode and a dark meditative mode with ambient glowing effects, helping you focus entirely on the Word.",
+      "All verses are generated instantly in your browser. There is no account required, and your selections remain private to your device."
+    ],
+    features: [
+      "Curated verses categorized by 6 spiritual moods",
+      "3 supported Bible translations (KJV, WEB, BBE)",
+      "Distraction-free meditative dark mode",
+      "One-click verse copying with reference formatting",
+      "Instantly generated with no server-side tracking"
+    ],
+    links: [
+      { href: "/tools/sequence-generator", label: "Sequence Generator" },
     ],
   },
   "sequence-generator": {
@@ -303,8 +326,41 @@ export const generatorFaqs: Record<string, GeneratorFaq> = {
       },
     ],
     links: [
-      { href: "/tools/tiktok-comment/about", label: "About TikTok Comment" },
       { href: "/tools/sequence-generator", label: "Sequence Generator" },
+    ],
+  },
+  "bible-verse": {
+    slug: "tools/bible-verse/faq",
+    eyebrow: "FAQ",
+    title: "Bible Verse FAQ",
+    description:
+      "Frequently asked questions about the Bible Verse Generator, translations, and meditative mode.",
+    intro:
+      "Find answers to common questions about generating verses, switching translations, and using the meditative mode.",
+    items: [
+      {
+        question: "Which Bible translations are supported?",
+        answer: "Currently, the tool supports the King James Version (KJV), World English Bible (WEB), and the Bible in Basic English (BBE). You can toggle between them using the selector at the top.",
+      },
+      {
+        question: "How are the verses selected?",
+        answer: "Verses are curated into specific spiritual moods (like Anxious, Grateful, or Seeking). When you generate a verse, the tool randomly selects one from the category that matches your current mood.",
+      },
+      {
+        question: "What is meditative mode?",
+        answer: "Meditative mode is a distraction-free dark theme with ambient visual effects, designed to help you focus and reflect on the Scripture in a peaceful digital environment.",
+      },
+      {
+        question: "Can I copy the verses?",
+        answer: "Yes, each generated verse comes with a 'Copy' button that copies both the text and the biblical reference directly to your clipboard.",
+      },
+      {
+        question: "Do I need an account to save verses?",
+        answer: "No account is required. The tool is designed for quick, ephemeral daily reflection rather than long-term storage, ensuring complete privacy.",
+      },
+    ],
+    links: [
+      { href: "/tools/tiktok-comment", label: "TikTok Comment" },
     ],
   },
   "sequence-generator": {

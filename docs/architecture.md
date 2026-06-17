@@ -2,9 +2,9 @@
 
 ## Overview
 The app is a multi-surface Vinext App Router project with a hub shell at `/`, two live tool routes, and a set of static guide pages.
-The hub owns discovery and routing. TikTok Comment owns the server-backed generation flow. Sequence Generator owns a pure client-side math flow. Static guide pages handle SEO and concept discovery for sequence-related queries.
+The hub owns discovery and routing. TikTok Comment owns the server-backed generation flow with a side-by-side desktop UI grid (5 columns for input, 7 columns for results) and inline About (5 columns) & FAQ (7 columns) sections aligned to the same grid columns. Sequence Generator owns a pure client-side math flow. Static guide pages handle SEO and concept discovery for sequence-related queries.
 Because the repo uses a custom Vite config, Vinext still wires the App Router through manual `@vitejs/plugin-rsc` entries.
-The visual layer stays light and compact so the hub remains minimal while tool and guide pages preserve short copy and dense utility.
+The visual layer stays light and compact so the hub remains minimal while tool and guide pages preserve short copy and dense utility. Standalone About and FAQ pages for TikTok Comment are removed in favor of inline integration at the bottom of the page, styled with a copper-amber accent theme and aligned to the dual-column grid.
 The root layout owns shared metadata, viewport, favicon links, and site-wide JSON-LD.
 Cloudflare deployment still uses `@cloudflare/vite-plugin` plus the generated `wrangler.jsonc` and `worker/index.ts` scaffold.
 
@@ -100,6 +100,6 @@ Cloudflare deployment still uses `@cloudflare/vite-plugin` plus the generated `w
 | `components/hub/tool-card.tsx` | Registry-backed hub tool card |
 | `components/tools/tiktok-comment/index.tsx` | Tool page wrapper |
 | `components/tools/sequence-generator/index.tsx` | Sequence tool wrapper |
-| `components/comment-assistant/*` | TikTok generator internals |
+| `components/comment-assistant/*` | TikTok generator internals, including inline About & FAQ |
 | `components/sequence-generator/*` | Sequence generator internals |
 | `app/*.page.tsx` sequence guides | Static SEO content pages |

@@ -7,7 +7,7 @@ describe("sequence generator tool", () => {
   it("renders the default tool shell and generates an arithmetic sequence", async () => {
     render(<SequenceGeneratorTool />);
 
-    expect(screen.getByRole("heading", { name: "Generate number sequences." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Sequence Generator" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Arithmetic/ })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Generate" }));

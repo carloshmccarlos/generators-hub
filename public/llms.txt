@@ -8,9 +8,10 @@ Robots: https://generators.317713.xyz/robots.txt
 
 ## What it does
 
-- Routes users to two live tools and a small set of static guides.
+- Routes users to three live tools and a small set of static guides.
 - Generates grouped TikTok comments from caption, keywords, language, goals, and tone.
 - Generates arithmetic, geometric, Fibonacci, random, and formula-based number sequences in the browser.
+- Generates random Bible verses from the KJV translation, filtered by Old/New Testament and topics like Comfort, Wisdom, and Faith.
 - Explains sequence generator meaning across math, Informatica, IICS, Snowflake, and digital electronics contexts.
 - Keeps user input client-side or request-scoped and does not store it on the server.
 
@@ -19,6 +20,7 @@ Robots: https://generators.317713.xyz/robots.txt
 - `/` - hub entry and route map
 - `/tools/tiktok-comment` - live TikTok comment generator
 - `/tools/sequence-generator` - live sequence generator
+- `/tools/bible-verse` - live Bible verse generator
 - `/informatica-sequence-generator` - Informatica sequence guide
 - `/informatica-sequence-generator-config` - Informatica config guide
 - `/iics-sequence-generator` - IICS sequence guide
