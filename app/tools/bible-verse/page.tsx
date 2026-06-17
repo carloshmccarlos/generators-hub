@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: tool.name,
   description: tool.description,
   applicationName: siteName,
-  keywords: siteKeywords,
+  keywords: [...siteKeywords, "random bible verse generator", "random scripture generator"],
   metadataBase: new URL(siteUrl),
   alternates: buildAlternates(tool.href ?? "/tools/bible-verse"),
   robots: {
